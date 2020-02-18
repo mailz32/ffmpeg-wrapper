@@ -1,20 +1,25 @@
 #!/usr/bin/env python
 
-from widgets import *
-from ffmpeg import *
+from tkinter import *
+from tkinter import messagebox
 import pathlib
 import json
 import re
 
+from widgets import *
+from ffmpeg import *
+
 class FfmpegWrapper(Tk):
     '''Main GUI class of application'''
+
+    PROGRAM_TITLE='A GUI wrapper to ffmpeg'
     def __init__(self):
         super().__init__()
 
         self._extraopts = StringVar()
         self._ComposeWidgets()
 
-        self.protocol("WM_DELETE_WINDOW", self._on_close)
+        self.protocol('WM_DELETE_WINDOW', self._on_close)
 
         self.update() # Force window to place it's elements
         # Get size dimensions from geometry
@@ -22,7 +27,7 @@ class FfmpegWrapper(Tk):
         self.minsize(_self_x, _self_y)
 
     def _ComposeWidgets(self):
-        self.title('A GUI wrapper to ffmpeg')
+        self.title(self.PROGRAM_TITLE)
         self['padx'] = 2
         self['pady'] = 2
 
@@ -86,6 +91,8 @@ class FfmpegWrapper(Tk):
 
         bat_file.close()
 
+        messagebox.showinfo(self.PROGRAM_TITLE, 'Success.')
+
     def save(self, path='.ffmpegwrapper'):
         options = {
             'extra': self._extraopts.get()
@@ -97,7 +104,7 @@ class FfmpegWrapper(Tk):
     def load(self, path='.ffmpegwrapper'):
         if not pathlib.Path(path).exists():
             return
-        
+
         with open(path) as file:
             options = json.load(file)
             self._extraopts.set(options.get('extra', ''))
