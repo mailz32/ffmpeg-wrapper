@@ -1,4 +1,3 @@
-#import subprocess
 import pathlib
 import re
 
@@ -20,8 +19,6 @@ def ffmpeg_command(in_path_s, subsfile='', extra='', outdir='', *,
                             subs=subs_filter, out=str(out_path))
     return cmd
 
-#D:\Temp\RUS Subs [Shift]\[Yousei-raws] Fate Zero 15 [BDrip 1280x720 x264 Vorbis].ass
-#"ass=D\\:\\\\Temp\\\\RUS Subs \[Shift\]\\\\\[Yousei-raws\] Fate Zero 15 \[BDrip 1280x720 x264 Vorbis\].ass"
 def vf_quote(path):
     '''Quotes escape-sequences in subtitle path.
     Cursed videofilters string magic...

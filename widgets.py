@@ -16,8 +16,6 @@ class FilesList(Frame):
 
     def __init__(self, master, title, **options):
 
-        #options['padx'] = 2
-        #options['pady'] = 2
         super().__init__(master, **options)
 
         self._files = StringVar()
@@ -40,8 +38,6 @@ class FilesList(Frame):
 
         # - List
         lst_files = Listbox(self)
-        #lst_files['width'] = 80
-        #lst_files['height'] = 8
         lst_files['listvariable'] = self._files
         lst_files.grid(sticky='nswe')
 
@@ -59,7 +55,7 @@ class FilesList(Frame):
         lst_files['xscrollcommand'] = sbh_lst_files.set
         sbh_lst_files.grid(row=3, column=0, sticky='we')
 
-        # Make first column and 2nd row expandable
+        # Make first column and second row expandable
         self.columnconfigure(0, weight=1)
         self.rowconfigure(2, weight=1)
 
@@ -70,7 +66,7 @@ class FilesList(Frame):
 
     def GetList(self) -> list:
         '''Returns a list of file paths which are present inside widget'''
-        return list( eval(self._files.get()) ) # i hope that's save to eval
+        return list( eval(self._files.get()) ) # i hope that's safe to eval
 
 class DirPath(Frame):
     def __init__(self, master, **options):
