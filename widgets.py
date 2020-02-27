@@ -39,6 +39,7 @@ class FilesList(Frame):
         # - List
         lst_files = Listbox(self)
         lst_files['listvariable'] = self._files
+        lst_files['width'] = 40
         lst_files.grid(sticky='nswe')
 
         # - Vertical scrollbar
